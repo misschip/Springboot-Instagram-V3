@@ -15,7 +15,7 @@ spring:
     password: bitc5600
     
   jpa:
-    open-in-view: true # 커넥션이 뷰단까지 유지(?)
+    open-in-view: true
     hibernate:
       ddl-auto: create
       naming:
