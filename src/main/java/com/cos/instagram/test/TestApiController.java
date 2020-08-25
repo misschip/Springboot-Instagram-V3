@@ -29,7 +29,6 @@ public class TestApiController {
 	private TagRepository tagRepository;
 	
 	@GetMapping("/test/api/join")
-	
 	public User join()  {
 		User user = User.builder()
 				.name("최주호")
@@ -59,18 +58,18 @@ public class TestApiController {
 				.name("#다낭")
 				.image(imageEntity)
 				.build();
-		tags.add(tag1);
-		
+
 		Tag tag2 = Tag.builder()
 				.name("#여행")
 				.image(imageEntity)
 				.build();
+		
 		tags.add(tag1);
 		tags.add(tag2);
 		
 		tagRepository.saveAll(tags);
 		
-		List<Image> images = imageRepository.findAll();
+		// List<Image> images = imageRepository.findAll();
 
 		
 		// Image imageEntity = imageRepository.save(image);
