@@ -12,6 +12,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.cos.instagram.web.dto.JoinReqDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,9 +28,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(unique = true)
 	private String username;
 	private String password;
 	private String name;
+	private String email;		// 모델 만들기 때 실수로 안 넣음
 	private String website;
 	private String bio;	// 자기소개
 	private String phone;
@@ -42,5 +46,5 @@ public class User {
 	@CreationTimestamp
 	private Timestamp createDate;
 	
-	
+
 }

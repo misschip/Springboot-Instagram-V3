@@ -1,7 +1,6 @@
-package com.cos.instagram.domain.tag;
+package com.cos.instagram.domain.follow;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,30 +11,32 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.cos.instagram.domain.image.Image;
-
+import com.cos.instagram.domain.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Tag {
-
+public class Follow {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name = "imageId")
-	private Image image;
+	@JoinColumn(name="fromUserId")
+	private User fromUser;
+	
+	@ManyToOne
+	@JoinColumn(name="toUserId")
+	private User toUser;
 	
 	@CreationTimestamp
 	private Timestamp createDate;
+
 }
