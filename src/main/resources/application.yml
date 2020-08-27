@@ -14,6 +14,8 @@ spring:
     username: insta
     password: bitc5600
     
+  mustache:    expose-session-attributes: true # mustache에서 session에 접근할 수 있도록
+    
   jpa:
     open-in-view: true # 커넥션이 뷰단까지 유지(?)
     hibernate:

@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.cos.instagram.config.oauth.PrincipalOAuth2UserService;
@@ -20,6 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private PrincipalOAuth2UserService principalOAuth2UserService;
+	
+	@Bean
+	public BCryptPasswordEncoder encode() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -35,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.formLogin()
 		.loginPage("/auth/loginForm")
 		.loginProcessingUrl("auth/login")
-		.defaultSuccessUrl("/image/feed")
+		.defaultSuccessUrl("/")
 		.failureHandler(new AuthenticationFailureHandler() {		
 			@Override 
 			public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
